@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>     <html class="no-js ie9 lt-ie10"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+  <title>Accessibility - ARIA Roles</title>
+  <link rel="shortcut icon" href="" />
+
+  <!-- Meta -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Using ARIA roles to make a page more accessible." />
+  <meta name="keywords" />
+  <link rel="author" href="https://plus.google.com/pczcanda" />
+
+  <!-- Open Graph data -->
+  <meta name="og:type" content="article" />
+  <meta name="og:title" content="Accessibility: ARIA Roles in Web pages" />
+  <meta name="og:image" content="http://placehold.it/1260x400/00A1E1/FFFFFF&text=Share%20Image" />
+  <meta name="og:description" content="Using ARIA roles to make a page more accessible." />
+  <meta name="og:url" content="" />
+  <meta name="og:site_name" content="Paciencia Labs" />
+  <meta name="fb:admins" />
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:site:id" content="">
+  <meta name="twitter:creator" content="pczcanda">
+  <meta name="twitter:creator:id" content="pczcanda">
+  <meta name="twitter:title" content="Page SEO Title">
+  <meta name="twitter:description" content="Using ARIA roles to make a page more accessible.">
+  <meta name="twitter:image:src" content="http://placehold.it/1260x400/00A1E1/FFFFFF&text=Share%20Image">
+
+  <!-- Google+ Snippet -->
+  <meta itemprop="name" content="Page SEO Title" />
+  <meta itemprop="description" content="Using ARIA roles to make a page more accessible." />
+
+  <!-- Additional tags -->
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Francois+One' rel='stylesheet' type='text/css'>
+
+  <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/form.css" />
+  <!--[if (lt IE 9) & (!IEMobile)]>
+  <![endif]-->
+  <!-- Initial JS: JS Class -->
+  <script type="text/javascript">
+    /* set the html tag to have a javascript class */
+    document.getElementsByTagName("html")[0].className = document.getElementsByTagName("html")[0].className.replace(/\bno-js\b/, 'js');
+
+    /* workaround to get viewport size working on windows8 mobile */
+    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+      var msViewportStyle = document.createElement("style");
+      msViewportStyle.appendChild(
+          document.createTextNode(
+              "@-ms-viewport{width:auto!important}"
+          )
+      );
+      document.getElementsByTagName("head")[0].
+          appendChild(msViewportStyle);
+    }
+  </script>
+  <!-- Initial JS: Remove console and logs -->
+  <script type="text/javascript">
+    window.onerror = function (message, url, linenumber) {
+      if (typeof console == "object") {
+        console.log(message, url, linenumber);
+      }
+    }
+  </script>
+  <!-- Initial JS: Typekit Fonts reference -->
+  <script type="text/javascript">
+  </script>
+
+</head>
+<body>
+  <!-- Google+ -->
+  <div itemscope itemtype="http://schema.org/CreativeWork" style="position: absolute; top: -9999em; left: -9999em;">
+    <p itemprop="name">Page SEO Title</p>
+    <p itemprop="description">Using ARIA roles to make a page more accessible.</p>
+    <p itemprop="image">http://placehold.it/1260x400/00A1E1/FFFFFF&text=Share%20Image</p>
+  </div>
+
+  <header>
+    <div class="header">
+      <div class="content-container">
+        <h4>Accesibility: ARIA roles</h4>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-content">
+    <div class="page-wrapper">
+      <div class="content-container">
+        <h1>Use of ARIA roles</h1>
+        <div class="page-menu">
+          <div class="rich-text">
+            <p>
+              For a better description of how it works please <a href="http://wordsby.pacienciacanda.com/social-sharing-through-meta-tags-part-i/" target="_blank">read this post</a> (and share it).
+            </p>
+          </div>
+        </div>
+      </div>
+      <form class="form clearfix">
+        <div class="content">
+          <div class="content-container">
+            <fieldset>
+              <legend>Default Text Field Section</legend>
+              <div class="form">
+                <div class="form-row clearfix not-validated">
+                  <div class="form-row-container with-tooltip">
+                    <div class="form-row-label">
+                      <label for="default-textfield">Default Text Field</label>
+                    </div>
+                    <div class="form-row-control">
+                      <div class="form-row-control--content">
+                        <input id="default-textfield" type="text" name="default-textfield" class="">
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                      <div class="form-row-tooltip">
+                        <a href="#tooltips" title="tooltip" class="tooltip">
+                          <div>
+                            <span class="helpMessage">Default tooltip message goes here. This is used when people don't know what something means.</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix invalid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="invalid-textfield">Invalid Text Field</label>
+                    </div>
+                    <div class="form-row-control">
+                      <div class="form-row-control--content">
+                        <input id="invalid-textfield" type="text" name="invalid-textfield">
+                        <div class="form-group-error">
+                          <p class="error-message">Default long Error message that goes over 2 lines so we can see how the label behaves (should be aligned at the top with some margin)</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix valid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="valid-textfield">Valid Text Field</label>
+                    </div>
+                    <div class="form-row-control">
+                      <div class="form-row-control--content">
+                        <input id="valid-textfield" type="text" name="valid-textfield">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix last readonly">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="valid-textfield">Read-only Text Field</label>
+                    </div>
+                    <div class="form-row-control">
+                      <div class="form-row-control--content">
+                        <input id="readonly-textfield" type="text" name="readonly-textfield" readonly="readonly" value="Read only value">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="content alternative">
+          <div class="content-container">
+            <fieldset>
+              <legend>Default Monetary Field Section</legend>
+              <div class="form">
+                <div class="form-row clearfix not-validated">
+                  <div class="form-row-container with-tooltip">
+                    <div class="form-row-label">
+                      <label for="default-monetaryfield">Default Monetary Field</label>
+                    </div>
+                    <div class="form-row-control monetary-value">
+                      <div class="form-row-control--content">
+                        <span class="symbol">£</span>
+                        <input id="default-monetaryfield" type="tel" name="default-monetaryfield" class="">
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                      <div class="form-row-tooltip">
+                        <a href="#tooltips" title="tooltip" class="tooltip">
+                          <div>
+                            <span class="helpMessage">Default tooltip message goes here. This is used when people don't know what something means.</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix invalid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="invalid-monetaryfield">Invalid Monetary Field</label>
+                    </div>
+                    <div class="form-row-control monetary-value">
+                      <div class="form-row-control--content">
+                        <span class="symbol">£</span>
+                        <input id="invalid-monetaryfield" type="tel" name="invalid-monetaryfield">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix valid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="valid-monetaryfield">Valid Monetary Field</label>
+                    </div>
+                    <div class="form-row-control monetary-value">
+                      <div class="form-row-control--content">
+                        <span class="symbol">£</span>
+                        <input id="valid-monetaryfield" type="tel" name="valid-monetaryfield">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix last readonly">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="readonly-monetaryfield">Read-only Monetary Field</label>
+                    </div>
+                    <div class="form-row-control monetary-value">
+                      <div class="form-row-control--content">
+                        <span class="symbol">£</span>
+                        <input id="readonly-monetaryfield" type="tel" name="readonly-monetaryfield" readonly="readonly" value="1234">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-container">
+            <fieldset>
+              <legend>Default Search Field Section</legend>
+              <div class="form">
+                <div class="form-row clearfix not-validated">
+                  <div class="form-row-container with-tooltip">
+                    <div class="form-row-label">
+                      <label for="default-searchfield">Default Search Field</label>
+                    </div>
+                    <div class="form-row-control search-value">
+                      <div class="form-row-control--content">
+                        <span class="symbol"></span>
+                        <input id="default-searchfield" type="text" name="default-searchfield" class="">
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                      <div class="form-row-tooltip">
+                        <a href="#tooltips" title="tooltip" class="tooltip">
+                          <div>
+                            <span class="helpMessage">Default tooltip message goes here. This is used when people don't know what something means.</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix invalid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="invalid-searchfield">Invalid Search Field</label>
+                    </div>
+                    <div class="form-row-control search-value">
+                      <div class="form-row-control--content">
+                        <span class="symbol"></span>
+                        <input id="invalid-searchfield" type="text" name="invalid-searchfield">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix valid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="valid-searchfield">Valid Search Field</label>
+                    </div>
+                    <div class="form-row-control search-value">
+                      <div class="form-row-control--content">
+                        <span class="symbol"></span>
+                        <input id="valid-searchfield" type="text" name="valid-searchfield">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix last readonly">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="readonly-searchfield">Read-only Search Field</label>
+                    </div>
+                    <div class="form-row-control search-value">
+                      <div class="form-row-control--content">
+                        <span class="symbol"></span>
+                        <input id="readonly-searchfield" type="text" name="readonly-searchfield" readonly="readonly" value="Read only value">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="content alternative">
+          <div class="content-container">
+            <fieldset>
+              <legend>Default DOB Field Section</legend>
+              <div class="form">
+                <div class="form-row clearfix not-validated">
+                  <div class="form-row-container with-tooltip">
+                    <div class="form-row-label">
+                      <label for="default-dobfield">Default DOB Field</label>
+                    </div>
+                    <div class="form-row-control dob-value">
+                      <div class="form-row-control--content">
+                        <input id="default-dobfield" type="tel" name="default-dobfield" class="hide">
+                        <div class="dob-section-container">
+                          <div class="dob-section">
+                            <input id="default-dobfield-dd" type="tel" name="default-dobfield-dd" placeholder="DD">
+                          </div>
+                          <div class="dob-section">
+                            <input id="default-dobfield-mm" type="tel" name="default-dobfield-mm" placeholder="MM">
+                          </div>
+                          <div class="dob-section last">
+                            <input id="default-dobfield-yy" type="tel" name="default-dobfield-yy" placeholder="YY">
+                          </div>
+                        </div>
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                      <div class="form-row-tooltip">
+                        <a href="#tooltips" title="tooltip" class="tooltip">
+                          <div>
+                            <span class="helpMessage">Default tooltip message goes here. This is used when people don't know what something means.</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix invalid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="invalid-dobfield">Default Invalid DOB Field</label>
+                    </div>
+                    <div class="form-row-control dob-value">
+                      <div class="form-row-control--content">
+                        <input id="invalid-dobfield" type="tel" name="invalid-dobfield" class="hide">
+                        <div class="dob-section-container">
+                          <div class="dob-section">
+                            <input id="invalid-dobfield-dd" type="tel" name="invalid-dobfield-dd" placeholder="DD">
+                          </div>
+                          <div class="dob-section">
+                            <input id="invalid-dobfield-mm" type="tel" name="invalid-dobfield-mm" placeholder="MM">
+                          </div>
+                          <div class="dob-section last">
+                            <input id="invalid-dobfield-yy" type="tel" name="invalid-dobfield-yy" placeholder="YY">
+                          </div>
+                        </div>
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix valid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="valid-dobfield">Default Valid DOB Field</label>
+                    </div>
+                    <div class="form-row-control dob-value">
+                      <div class="form-row-control--content">
+                        <input id="valid-dobfield" type="tel" name="valid-dobfield" class="hide">
+                        <div class="dob-section-container">
+                          <div class="dob-section">
+                            <input id="valid-dobfield-dd" type="tel" name="valid-dobfield-dd" placeholder="DD">
+                          </div>
+                          <div class="dob-section">
+                            <input id="valid-dobfield-mm" type="tel" name="valid-dobfield-mm" placeholder="MM">
+                          </div>
+                          <div class="dob-section last">
+                            <input id="valid-dobfield-yy" type="tel" name="valid-dobfield-yy" placeholder="YY">
+                          </div>
+                        </div>
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix last readonly">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="readonly-dobfield">Default Readonly DOB Field</label>
+                    </div>
+                    <div class="form-row-control dob-value">
+                      <div class="form-row-control--content">
+                        <input id="readonly-dobfield" type="tel" name="readonly-dobfield" class="hide">
+                        <div class="dob-section-container">
+                          <div class="dob-section">
+                            <input id="readonly-dobfield-dd" type="tel" name="readonly-dobfield-dd" readonly="readonly" value="DD">
+                          </div>
+                          <div class="dob-section">
+                            <input id="readonly-dobfield-mm" type="tel" name="readonly-dobfield-mm" readonly="readonly" value="MM">
+                          </div>
+                          <div class="dob-section last">
+                            <input id="readonly-dobfield-yy" type="tel" name="readonly-dobfield-yy" readonly="readonly" value="YY">
+                          </div>
+                        </div>
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-container">
+            <fieldset>
+              <legend>Default Small Text Field Section</legend>
+              <div class="form">
+                <div class="form-row clearfix not-validated">
+                  <div class="form-row-container with-tooltip">
+                    <div class="form-row-label">
+                      <label for="default-smalltextfield">Default Small Text Field</label>
+                    </div>
+                    <div class="form-row-control small-text-control">
+                      <div class="form-row-control--content">
+                        <input id="default-smalltextfield" type="text" name="default-smalltextfield" class="">
+                        <div class="form-row-tooltip">
+                          <a href="#tooltips" title="tooltip" class="tooltip">
+                            <div>
+                              <span class="helpMessage">Default tooltip message goes here. This is used when people don't know what something means.</span>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix invalid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="invalid-smalltextfield">Invalid Small Text Field</label>
+                    </div>
+                    <div class="form-row-control small-text-control">
+                      <div class="form-row-control--content">
+                        <input id="invalid-smalltextfield" type="text" name="invalid-smalltextfield">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix valid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="valid-smalltextfield">Valid Small Text Field</label>
+                    </div>
+                    <div class="form-row-control small-text-control">
+                      <div class="form-row-control--content">
+                        <input id="valid-smalltextfield" type="text" name="valid-smalltextfield">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix last readonly">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="valid-smalltextfield">Read-only Small Text Field</label>
+                    </div>
+                    <div class="form-row-control small-text-control">
+                      <div class="form-row-control--content">
+                        <input id="readonly-smalltextfield" type="text" name="readonly-smalltextfield" readonly="readonly" value="Read only value">
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="content alternative">
+          <div class="content-container">
+            <fieldset>
+              <legend>Default Select Field Section</legend>
+              <div class="form">
+                <div class="form-row clearfix not-validated">
+                  <div class="form-row-container with-tooltip">
+                    <div class="form-row-label">
+                      <label for="default-selectfield">Default Select Field</label>
+                    </div>
+                    <div class="form-row-control select-value">
+                      <div class="form-row-control--content">
+                        <div class="select-container">
+                          <select id="default-selectfield">
+                            <option value="option 1">option 1</option>
+                            <option value="option 2">option 2</option>
+                            <option value="option 3">option 3</option>
+                            <option value="option 4">option 4</option>
+                          </select>
+                        </div>
+                        <div class="form-group-error">
+                          <p class="error-message">Default error message</p>
+                        </div>
+                      </div>
+                      <div class="form-row-tooltip">
+                        <a href="#tooltips" title="tooltip" class="tooltip">
+                          <div>
+                            <span class="helpMessage">Default tooltip message goes here. This is used when people don't know what something means.</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix invalid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="invalid-selectfield">Invalid Select Field</label>
+                    </div>
+                    <div class="form-row-control select-value">
+                      <div class="form-row-control--content">
+                        <div class="select-container">
+                          <select id="invalid-selectfield">
+                            <option value="option 1">option 1</option>
+                            <option value="option 2">option 2</option>
+                            <option value="option 3">option 3</option>
+                            <option value="option 4">option 4</option>
+                          </select>
+                        </div>
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row clearfix last valid">
+                  <div class="form-row-container">
+                    <div class="form-row-label">
+                      <label for="valid-selectfield">Valid Select Field</label>
+                    </div>
+                    <div class="form-row-control select-value">
+                      <div class="form-row-control--content">
+                        <div class="select-container">
+                          <select id="valid-selectfield">
+                            <option value="option 1">option 1</option>
+                            <option value="option 2">option 2</option>
+                            <option value="option 3">option 3</option>
+                            <option value="option 4">option 4</option>
+                          </select>
+                        </div>
+                        <div class="form-group-error">
+                          <p class="error-message">Default Error message</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-container">
+            <fieldset>
+              <legend class="radio-label">Default Custom Text Radio Buttons</legend>
+              <div class="form-group-error radio-error">
+                <p class="error-message">Default error message</p>
+              </div>
+              <div class="form-row clearfix radio-row custom-text-radios">
+                <div class="form-row-container full-row">
+                  <div class="form-row-control-group">
+                    <div class="form-row-control-group-line">
+                      <div class="form-row-control">
+                        <input type="radio" id="default-customtextradiobuttongroup-1" name="default-customtextradiobuttongroup" class="custom-radio-btn" value="Option 1">
+                        <label for="default-customtextradiobuttongroup-1"><span class="">Option 1</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="default-customtextradiobuttongroup-2" name="default-customtextradiobuttongroup" class="custom-radio-btn" value="Option 2">
+                        <label for="default-customtextradiobuttongroup-2"><span class="">Option 2</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="default-customtextradiobuttongroup-3" name="default-customtextradiobuttongroup" class="custom-radio-btn" value="Option 3">
+                        <label for="default-customtextradiobuttongroup-3"><span class=" ">Option 3</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="default-customtextradiobuttongroup-4" name="default-customtextradiobuttongroup" class="custom-radio-btn" value="Option 4">
+                        <label for="default-customtextradiobuttongroup-4"><span class="">Option 4</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="default-customtextradiobuttongroup-5" name="default-customtextradiobuttongroup" class="custom-radio-btn" value="Option 5">
+                        <label for="default-customtextradiobuttongroup-5"><span class="">Option 5</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="content alternative">
+          <div class="content-container">
+            <fieldset class="invalid">
+              <legend class="radio-label">Invalid Custom Text Radio Buttons</legend>
+              <div class="form-group-error radio-error">
+                <p class="error-message">Default error message</p>
+              </div>
+              <div class="form-row clearfix radio-row custom-text-radios">
+                <div class="form-row-container full-row">
+                  <div class="form-row-control-group">
+                    <div class="form-row-control-group-line">
+                      <div class="form-row-control">
+                        <input type="radio" id="invalid-customtextradiobuttongroup-1" name="invalid-customtextradiobuttongroup" class="custom-radio-btn" value="Option 1">
+                        <label for="invalid-customtextradiobuttongroup-1"><span class="">Option 1</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="invalid-customtextradiobuttongroup-2" name="invalid-customtextradiobuttongroup" class="custom-radio-btn" value="Option 2">
+                        <label for="invalid-customtextradiobuttongroup-2"><span class="">Option 2</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="invalid-customtextradiobuttongroup-3" name="invalid-customtextradiobuttongroup" class="custom-radio-btn" value="Option 3">
+                        <label for="invalid-customtextradiobuttongroup-3"><span class="">Option 3</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="invalid-customtextradiobuttongroup-4" name="invalid-customtextradiobuttongroup" class="custom-radio-btn" value="Option 4">
+                        <label for="invalid-customtextradiobuttongroup-4"><span class="">Option 4</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="invalid-customtextradiobuttongroup-5" name="invalid-customtextradiobuttongroup" class="custom-radio-btn" value="Option 5">
+                        <label for="invalid-customtextradiobuttongroup-5"><span class="">Option 5</span></label>
+                      </div>
+                      <div class="form-row-control">
+                        <input type="radio" id="invalid-customtextradiobuttongroup-6" name="invalid-customtextradiobuttongroup" class="custom-radio-btn" value="Option 6">
+                        <label for="invalid-customtextradiobuttongroup-6"><span class="">Option 6</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="content">
+          <div class="content-container">
+            <fieldset>
+              <legend>Checkboxes Section</legend>
+              <div class="form-row clearfix checkbox-row label-first not-validated">
+                <div class="form-row-container with-tooltip">
+                  <div class="form-row-label">
+                    <label for="default-labelfirstcheckbox-name">Default Label First Checkbox</label>
+                  </div>
+                  <div class="form-row-control">
+                    <div class="form-row-control--content">
+                      <input id="default-labelfirstcheckbox" type="checkbox" name="default-labelfirstcheckbox" class="">
+                      <label for="default-labelfirstcheckbox"><span>Default Label First Checkbox</span></label>
+                      <div class="form-row-tooltip">
+                        <a href="#tooltips" title="tooltip" class="tooltip">
+                          <div>
+                            <span class="helpMessage">Default tooltip message goes here. This is used when people don't know what something means.</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="form-group-error">
+                        <p class="error-message">Default error message</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row clearfix checkbox-row label-first invalid">
+                <div class="form-row-container">
+                  <div class="form-row-label">
+                    <label for="invalid-labelfirstcheckbox-name">Invalid Label First Checkbox</label>
+                  </div>
+                  <div class="form-row-control">
+                    <div class="form-row-control--content">
+                      <input id="invalid-labelfirstcheckbox" type="checkbox" name="invalid-labelfirstcheckbox" class="">
+                      <label for="invalid-labelfirstcheckbox"><span>Invalid Label First Checkbox</span></label>
+                      <div class="form-group-error">
+                        <p class="error-message">Default error message</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row clearfix last checkbox-row label-first valid">
+                <div class="form-row-container">
+                  <div class="form-row-label">
+                    <label for="valid-labelfirstcheckbox-name">Valid Label First Checkbox</label>
+                  </div>
+                  <div class="form-row-control">
+                    <div class="form-row-control--content">
+                      <input id="valid-labelfirstcheckbox" type="checkbox" name="valid-labelfirstcheckbox" class="" checked="checked">
+                      <label for="valid-labelfirstcheckbox"><span>Valid Label First Checkbox</span></label>
+                      <div class="form-group-error">
+                        <p class="error-message">Default error message</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <div class="footer">
+      <div class="page-wrapper">
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.socialshare.js"></script>
+
+
+</body>
+</html>
