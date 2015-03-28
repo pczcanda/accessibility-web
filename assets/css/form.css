@@ -128,18 +128,6 @@
   display: block;
   font-size: inherit;
 }
-.checkbox-row #foo:checked,
-.checkbox-row input[type="checkbox"] + label::before {
-  background-image: url('../images/cssimages/loans_sprite.png');
-  background-repeat: no-repeat;
-  background-position: -648px -9px;
-}
-
-.checkbox-row input[type="checkbox"]:checked + label::before {
-  background-image: url('../images/cssimages/loans_sprite.png');
-  background-repeat: no-repeat;
-  background-position: -688px -9px;
-}
 
 .checkbox-row .form-row-container.with-tooltip {
   position: static;
@@ -160,11 +148,9 @@
 }
 .checkbox-row.label-first #foo:checked,
 .checkbox-row.label-first input[type="checkbox"] + label::before {
-  /*.retina-image('../images/cssimages/loans_sprite', png, no-repeat, 1500px, 600px, -648px, -9px);*/
   background-color: #FFFFFF;
 }
 .checkbox-row.label-first input[type="checkbox"]:checked + label::before {
-  /*.retina-image('../images/cssimages/loans_sprite', png, no-repeat, 1500px, 600px, -688px, -9px);*/
   background-color: #00874f;
 }
 
@@ -206,17 +192,6 @@
   display: block;
   padding-top: 4px;
   font-size: inherit;
-}
-.radio-row #foo:checked,
-.radio-row input[type="radio"] + label::before {
-  background-image: url('../images/cssimages/loans_sprite.png');
-  background-repeat: no-repeat;
-  background-position: -567px -9px;
-}
-.radio-row input[type="radio"]:checked + label::before {
-  background-image: url('../images/cssimages/loans_sprite.png');
-  background-repeat: no-repeat;
-  background-position: -607px -9px;
 }
 
 .radio-row.custom-text-radios .form-row-control-group {
@@ -954,7 +929,7 @@ input[type="checkbox"] {
   background-repeat: no-repeat;
   background-position: center center;
 }
-.tooltip > div {
+.tooltip > p {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -989,7 +964,8 @@ input[type="checkbox"] {
   border-width: 10px 10px 0 10px;
   pointer-events: none;
 }
-.tooltip:hover div {
+.tooltip:hover p,
+.tooltip.showing p {
   display: block;
 }
 /*#endregion*/
@@ -1216,7 +1192,7 @@ input[type="checkbox"] {
 
 @media only screen and (min-width: 768px) {
 
-  .tooltip > div {
+  .tooltip > p {
     width: 310px;
     -ms-transform: translate(15%, 0);
     -webkit-transform: translate(15%, 0);

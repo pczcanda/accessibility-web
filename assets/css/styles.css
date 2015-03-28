@@ -552,6 +552,10 @@ footer,
   top: -9999em;
 }
 
+.inpage-hide{
+  position: absolute; top: -9999em; left: -9999em;
+}
+
 
 /*#region Home Slider*/
 .page-menu {
