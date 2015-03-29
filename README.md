@@ -32,6 +32,7 @@ Below is the list of what has been considered as the most important elements to 
 #### aria-labeledby="labelID"
  - this example helps identifying which label belongs to an input field. This proves very useful when using group elements such as radio buttons or checkboxes that have a different label assigned to them (to show their value) but have a group label that is generally the description of the group.
 
+```
   <div class="form-row clearfix not-validated">
     <div class="form-row-container">
       <div class="form-row-label">
@@ -40,47 +41,48 @@ Below is the list of what has been considered as the most important elements to 
       <div class="form-row-control" aria-labelledby="default-textfield-label">
         <div class="form-row-control--content">
           <input id="default-textfield" type="text" name="default-textfield">
-              <div class="form-group-error">
-                <p class="error-message" id="default-textfield-error">
-                  Default error message for default-textfield.
-                </p>
-              </div>
-            </div>
+          <div class="form-group-error">
+            <p class="error-message" id="default-textfield-error">
+              Default error message for default-textfield.
+            </p>
           </div>
         </div>
       </div>
-
+    </div>
+  </div>
+```
 
 ### form elements: tooltips
 
 #### aria-describedby="tooltipID"
  - this example assigns a tooltip to an input, using the tooltip's ID. There is a helper function that brings tooltips on focus using JS. Alternatively we could have placed the tooltip next to the input in order to use the adjacent sibling CSS selector (element + sibling).
-    <div class="form-row clearfix not-validated">
-      <div class="form-row-container with-tooltip">
-        <div class="form-row-label">
-          <label id="default-textfield-label" for="default-textfield">Default Text Field</label>
-        </div>
-        <div class="form-row-control" aria-labelledby="default-textfield-label">
-          <div class="form-row-control--content">
-            <input id="default-textfield" type="text" name="default-textfield" aria-describedby="default-textfield-tip">
-            <div class="form-group-error">
-              <p class="error-message" id="default-textfield-error">Default error message for default-textfield.</p>
-            </div>
+
+```  
+  <div class="form-row clearfix not-validated">
+    <div class="form-row-container with-tooltip">
+      <div class="form-row-label">
+        <label id="default-textfield-label" for="default-textfield">Default Text Field</label>
+      </div>
+      <div class="form-row-control" aria-labelledby="default-textfield-label">
+        <div class="form-row-control--content">
+          <input id="default-textfield" type="text" name="default-textfield" aria-describedby="default-textfield-tip">
+          <div class="form-group-error">
+            <p class="error-message" id="default-textfield-error">Default error message for default-textfield.</p>
           </div>
-          <div class="form-row-tooltip">
-            <div title="tooltip" class="tooltip">
-              <p>
-                <span class="helpMessage" id="default-textfield-tip" role="tooltip">
-                  Default tooltip message for default-textfield.
-                </span>
-              </p>
-            </div>
+        </div>
+        <div class="form-row-tooltip">
+          <div title="tooltip" class="tooltip">
+            <p>
+              <span class="helpMessage" id="default-textfield-tip" role="tooltip">
+                Default tooltip message for default-textfield.                
+              </span>
+            </p>
           </div>
         </div>
       </div>
     </div>
-
-
+  </div>
+```
 
 ### Things to add
 
