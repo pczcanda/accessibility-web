@@ -1,6 +1,7 @@
 # accessibility-web
 
 [![Join the chat at https://gitter.im/pczcanda/accessibility-web](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pczcanda/accessibility-web?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a small library to help improve the accessibility of web pages: use of ARIA roles and other helpers for accessibility.
 
 The focus of the ARIA roles used on this first project will be on form elements: labels, inputs, tooltips, error messages etc.
